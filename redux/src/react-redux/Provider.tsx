@@ -6,7 +6,7 @@ interface Props {
 }
 export default class Provider extends Component<Props> {
     render() {
-        //Provider的value属性就是 context放的那个值
+        
         return (
             <ReactReduxContext.Provider value={{ store: this.props.store }}>
                 {this.props.children}

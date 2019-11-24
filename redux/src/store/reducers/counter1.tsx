@@ -1,10 +1,10 @@
-// Counter1组件所使用的状态和处理函数reducer(老状态，action):新状态
+
 import { Reducer, AnyAction } from '../../redux';
 import * as TYPES from '../action-types';
-export interface Counter1State {//仓库的状态类型
+export interface Counter1State {
     number: number
 }
-//定义初始状态
+
 let initialState: Counter1State = { number: 0 };
 const reducer: Reducer<Counter1State, AnyAction> = (state: Counter1State = initialState, action: AnyAction): Counter1State => {
     switch (action.type) {

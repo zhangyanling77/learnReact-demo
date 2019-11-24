@@ -15,10 +15,9 @@ class Counter2 extends React.Component<Props> {
         )
     }
 }
-//仓库中的状态对象映射为当前组件的属性对象 state.counter1 将会成为当前组件props
+
 const mapStateToProps = (state: CombinedState): Counter2State => state.counter2;
-//把dispatch方法映射为当前组件的属性对象  actions也会成为当前组件props
-//const mapDispatchToProps;
+
 export default connect(
     mapStateToProps,
     actions

@@ -9,10 +9,8 @@ export default function applyMiddleware<Ext, S>(
 ): StoreEnhancer {
     return (createStore: StoreCreator) => <S, A extends Action>(
         reducer: Reducer<S, A>): Store<S, A> => {
-        //'AnyAction' is assignable to the constraint of type 'A'
-        // Store<S, A>  dispatch: Dispatch<A>=><T extends A>(action: T) => T
         let store = createStore(reducer);
-        let dispatch: Dispatch<AnyAction>;//=><T extends AnyAction>(action: T) => T
+        let dispatch: Dispatch<AnyAction>;
         const middlewareAPI: MiddlewareAPI<Dispatch, S> = {
             getState: store.getState,
             dispatch: (action) => dispatch(action)
@@ -25,10 +23,4 @@ export default function applyMiddleware<Ext, S>(
         };
     }
 }
-/**
- * applyMiddleware
- * StoreEnhancer 是用来接收中间件的函数,返回一个可以增强createStore方法
- *  StoreEnhancerStoreCreator  reducer=>store
- * StoreEnhancer=>StoreEnhancerStoreCreator=>store
- *
- */
+

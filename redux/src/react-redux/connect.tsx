@@ -2,7 +2,7 @@ import React from 'react';
 import ReactReduxContext from './context';
 import { ContextValue } from './types';
 import { Unsubscribe, bindActionCreators, AnyAction, ActionCreatorsMapObject } from '../redux';
-//import { MapStateToProps } from 'react-redux';
+
 import { MapStateToProps } from './';
 import { CombinedState } from '../store/reducers';
 
