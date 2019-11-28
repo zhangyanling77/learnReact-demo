@@ -1,6 +1,5 @@
 import * as TYPES from '../action-types';
 import { Dispatch } from '../../redux';
-import { reject } from 'q';
 
 let actions = {
     increment1() {
