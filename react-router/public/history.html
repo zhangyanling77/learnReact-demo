@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <title>React App</title>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script>
+    //pushState向内推 popState向外弹 并没有onpushstate
+    window.onpopstate = function (event) {
+      console.log({
+        state: event.state,
+        pathname: window.location.pathname,
+        type: 'popstate'
+      });
+    }
+    window.onpushstate = function (event) {
+      console.log(event);
+    }
+    !(function (history) {
+      let pushState = history.pushState;//缓存老的pushState方法
+      /**
+       * state 当前路径的状态
+       * title 标题
+       * pathname  跳转或添加的数据
+       */
+      history.pushState = function (state, title, pathname) {
+        if (typeof window.onpushstate === 'function') {
+          window.onpushstate({ state, pathname, title, type: 'pushstate' });
+        }
+        return pushState.apply(history, arguments);
+      }
+    })(window.history);
+    setTimeout(() => {
+      history.pushState({ page: 1 }, 'page1', '/page1');
+    }, 3000);
+    setTimeout(() => {
+      history.pushState({ page: 2 }, 'page2', '/page2');
+    }, 6000);
+    setTimeout(() => {
+      history.pushState({ page: 3 }, 'page3', '/page3');
+    }, 6000);
+    setTimeout(() => {
+      history.back();
+    }, 9000);
+    setTimeout(() => {
+      history.go(1);
+    }, 12000);
+  </script>
+</body>
+
+</html>

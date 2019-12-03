@@ -1,17 +1,43 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Route, Link } from 'react-router-dom';
-import { Provider } from 'react-redux';
+import { BrowserRouter as Router, Route, Link, Switch, Redirect, MenuLink } from './react-router-dom';
 import Home from './components/Home';
-import Counter from './components/Counter';
-import store from './store';
-import { ConnectedRouter } from './connected-react-router';
-import history from './history';
+import User from './components/User';
+import Profile from './components/Profile';
+import Protected from './components/Protected';
+import Login from './components/Login';
+import 'bootstrap/dist/css/bootstrap.css';
+import NavHeader from './components/NavHeader';
+let root: HTMLDivElement = document.getElementById('root') as HTMLDivElement;
+/**
+ * 路由容器是放在最外面 Router有且只能有一个子组件
+ */
 ReactDOM.render(
-    <Provider store={store}>
-        <ConnectedRouter history={history}>
-            <Route path="/" exact component={Home} />
-            <Route path="/counter" exact component={Counter} />
-        </ConnectedRouter>
-    </Provider>, document.getElementById('root')
+    <Router>
+        <>
+            <div className="navbar navbar-inverse">
+                <div className="container-fluid">
+                    <NavHeader title="珠峰架构" />
+                    <ul className="nav navbar-nav">
+                        <li><MenuLink to="/" exact={true} >Home</MenuLink></li>
+                        <li><MenuLink to="/user" >User</MenuLink></li>
+                        <li><MenuLink to="/profile" >Profile</MenuLink></li>
+                    </ul>
+                </div>
+            </div>
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-12">
+                        <Switch>
+                            <Route path="/" component={Home} exact={true} />
+                            <Route path="/user" component={User} />
+                            <Protected path="/profile" component={Profile} />
+                            <Route path="/login" component={Login} />
+                            <Redirect to="/" />
+                        </Switch>
+                    </div>
+                </div>
+            </div>
+        </>
+    </Router>, root
 );

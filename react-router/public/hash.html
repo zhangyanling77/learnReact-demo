@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <title>React App</title>
+</head>
+
+<body>
+  <a href="#/a">跳转到/a</a>
+  <a href="#/b">跳转到/b</a>
+  <div id="root" style="border:1px solid red"></div>
+  <script>
+    //当浏览器的hash值发生改变之后，会执行对应的回调函数
+    let root = document.getElementById('root');
+    window.addEventListener('hashchange', () => {
+      console.log('window.location.hash', window.location.hash);
+      let hash = window.location.hash.slice(1);
+      root.innerHTML = hash;
+    });
+  </script>
+</body>
+
+</html>
