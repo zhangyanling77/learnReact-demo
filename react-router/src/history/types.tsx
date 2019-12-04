@@ -4,7 +4,7 @@ export interface Location<S = LocationState> {
     pathname: string;
     state?: S;
 }
-//在跳转路径的时候，传的可能是一个字符串，也可能是一个对象{pathname,state}
+// 跳转路径传的可能是一个字符串'/pathname'，也可能是一个对象{ pathname,state }
 export type LocationDescriptor = string | Location;
 
 export interface History {
