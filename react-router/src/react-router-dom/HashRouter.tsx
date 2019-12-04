@@ -8,11 +8,11 @@ interface Props {
 interface State {
     location: Location
 }
-//在此组件里定义一个Location路径对象，然后通过上下文传递给它的子组件们
+
 export default class extends React.Component<Props, State> {
     locationState: any
     state = {
-        location: { // /a#/user window.location.hash=#/user /user 
+        location: {  
             pathname: window.location.hash.slice(1)
         }
     }
@@ -26,11 +26,11 @@ export default class extends React.Component<Props, State> {
                 }
             });
         });
-        //如果没有这行代码，就没有默认的hash值
+        // 给定默认的hash值
         window.location.hash = window.location.hash || '/';
     }
     render() {
-        let that = this;//缓存this指针
+        let that = this; // 缓存this指针
         let history: History = {
             push(to: LocationDescriptor) {
                 if (history.message) {
@@ -39,7 +39,7 @@ export default class extends React.Component<Props, State> {
                 }
                 if (typeof to === 'object') {
                     let { pathname, state } = to;
-                    that.locationState = state;//此这个时候先缓存location中的状态
+                    that.locationState = state; // 缓存location中的状态
                     window.location.hash = pathname;
                 } else {
                     that.locationState = null;
