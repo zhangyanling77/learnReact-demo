@@ -9,15 +9,13 @@ import Login from './components/Login';
 import 'bootstrap/dist/css/bootstrap.css';
 import NavHeader from './components/NavHeader';
 let root: HTMLDivElement = document.getElementById('root') as HTMLDivElement;
-/**
- * 路由容器是放在最外面 Router有且只能有一个子组件
- */
+
 ReactDOM.render(
     <Router>
         <>
             <div className="navbar navbar-inverse">
                 <div className="container-fluid">
-                    <NavHeader title="珠峰架构" />
+                    <NavHeader title="hello world" />
                     <ul className="nav navbar-nav">
                         <li><MenuLink to="/" exact={true} >Home</MenuLink></li>
                         <li><MenuLink to="/user" >User</MenuLink></li>

@@ -13,16 +13,15 @@ declare global {
         onpushstate: (state: any, pathname: string) => void;
     }
 }
-//在此组件里定义一个Location路径对象，然后通过上下文传递给它的子组件们
+
 export default class extends React.Component<Props, State> {
     locationState: any
     state = {
-        location: { // /a#/user window.location.hash=#/user /user 
+        location: { 
             pathname: "/"
         }
     }
     componentDidMount() {
-        //当触发popState的时候会执行此函数
         window.onpopstate = (event: PopStateEvent) => {
             this.setState({
                 location: {
@@ -43,7 +42,7 @@ export default class extends React.Component<Props, State> {
         }
     }
     render() {
-        let that = this;//缓存this指针
+        let that = this;
         let history: History = {
             push(to: LocationDescriptor) {
                 if (history.message) {
