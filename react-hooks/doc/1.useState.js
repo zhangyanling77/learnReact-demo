@@ -27,8 +27,7 @@ function Counter2() {
         </div>
     )
 }
-//函数式更新
-//如果新的状态需要使用先前的状态计算出来，
+
 function Counter3() {
     let [state, setState] = useState({ number: 0 });
     function lazy() {
@@ -51,12 +50,9 @@ function Counter3() {
         </div>
     )
 }
-//惰性初始state
-//initialState初始状态参数只会有组件初始渲染的时候调用，后续渲染会被忽略 
-//跟类组件setState不同，这里的状态不会自动合并 ，更新的时候要传入完整的值
+
 function Counter4() {
     let [state, setState] = useState(function () {
-        console.log('初始状态');
         return { number: 0, name: '计数器' };
     });
 
@@ -84,9 +80,7 @@ let lastAddClick;
 let lastChangeName;
 function Counter6() {
     let [number, setNumber] = useState(0);
-    let [name, setName] = useState('zhufeng');
-    //会在每次渲染的时候都 会生成一个新的函数
-    //只有在依赖的变量发生变化的时候才会重新生成
+    let [name, setName] = useState('hello hooks');
     const addClick = useCallback(() => setNumber(number + 1), [number]);
     console.log(lastAddClick === addClick);
     lastAddClick = addClick;
