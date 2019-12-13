@@ -1,6 +1,8 @@
 import React, { useEffect, useLayoutEffect, useState, useRef, useImperativeHandle } from 'react';
 import ReactDOM from 'react-dom';
 
+// 自定义hook，必须以use开头，这是规范
+// 在自定义的hook中可以使用api中已有的hook
 function useCounter() {
     let [number, setNumber] = useState(0);
     useEffect(() => {
@@ -30,11 +32,3 @@ function Counter2() {
     )
 }
 ReactDOM.render(<><Counter1 /><Counter2 /></>, document.getElementById('root'));
-/*
-useMemo useCallback useRef
-本质上都是为了缓存
-这些东西在没有hooks之前。
-在以前我们都类组件，类组件就有实例，类的实例 一旦创建就有实例 ，上面的属性也可以存在。
-但是现在我们hooks,hooks只能用在函数组件里。函数组件没有this,就没有实例，没有办法在实例 上挂属性状态
-现在就要靠useMemo、useCallback、useRef实现缓存
-*/
