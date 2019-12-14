@@ -13,7 +13,7 @@ function reducer(state, action) {
             return state;
     }
 }
-//实现redux-logger 在重组次状态变更后打印新的状态值 redux中件间，是用新的dispatch替换老dispatch
+// logger
 function useLogger(reducer, initialState) {
     let [state, dispatch] = useReducer(reducer, initialState);
     function loggerDispatch(action) {
@@ -23,6 +23,7 @@ function useLogger(reducer, initialState) {
     useEffect(() => console.log('新状态', state));
     return [state, loggerDispatch];
 }
+// thunk
 function useThunk(reducer, initialState) {
     let [state, dispatch] = useReducer(reducer, initialState);
     function thunkDispatch(action) {
@@ -34,6 +35,7 @@ function useThunk(reducer, initialState) {
     }
     return [state, thunkDispatch];
 }
+// promise
 function usePromise(reducer, initialState) {
     let [state, dispatch] = useReducer(reducer, initialState);
     function promiseDispatch(action) {
