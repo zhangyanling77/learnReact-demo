@@ -18,7 +18,7 @@ function useAjax(url) {
 }
 function App() {
     const [users, loadMore] = useAjax('http://localhost:8000/api/users');
-    if (users === null) {
+    if (!users) {
         return <div>loading....</div>
     }
     return (
